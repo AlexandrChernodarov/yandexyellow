@@ -1,19 +1,16 @@
 import sys
-from math import sin, cos, pi
 from random import randint
-from PyQt5 import uic
 
-from PyQt5.QtCore import Qt, QPoint
 from PyQt5.QtGui import QPainter, QColor
-from PyQt5.QtWidgets import QWidget, QApplication
-from PyQt5.QtWidgets import QApplication, QMainWindow, QColorDialog, QInputDialog
+from PyQt5.QtWidgets import QApplication, QMainWindow
+from UI import Ui_MainWindow
 
 
 
-class Yellow(QMainWindow):
+class Yellow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
+        self.setupUi(self)
         self.setMouseTracking(True)
         self.coords_ = []
         self.qp = QPainter()
@@ -34,8 +31,7 @@ class Yellow(QMainWindow):
 
     def draw(self, status):
         R = randint(20, 100)
-        # self.qp.setBrush(QColor(*[randint(0, 255) for _ in range(3)]))
-        self.qp.setBrush(QColor(255, 255, 0))
+        self.qp.setBrush(QColor(*[randint(0, 255) for _ in range(3)]))
         self.qp.drawEllipse(randint(100, 700) - R / 2,
                             randint(100, 500) - R / 2, R, R)
 
